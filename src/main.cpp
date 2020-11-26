@@ -5,6 +5,8 @@
 #include "webserver.h"
 #include "wifi.h"
 
+#include "filesystem.h"
+
 
 const char* ssid = "Caradhras";
 const char* password = "Speak friend.";
@@ -19,6 +21,7 @@ void setup()
     powerSwitch.begin();
     Serial.begin(115200);
 
+    fileSystemSetup();
     wifiConnect(hostName, ssid, password);
     ota_setup();
     webServerStart(&powerSwitch);
