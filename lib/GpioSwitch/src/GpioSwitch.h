@@ -17,6 +17,7 @@ public:
     State state() const;
     void turnOn();
     void turnOff();
+    void togglePower();
 private:
     uint8_t _pin;
     State _state;

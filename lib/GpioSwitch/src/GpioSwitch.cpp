@@ -42,3 +42,15 @@ void GpioSwitch::turnOff()
     digitalWrite(_pin, _invertLogic ? HIGH : LOW);
     _state = OFF;
 }
+
+void GpioSwitch::togglePower()
+{
+    if (_state == ON)
+    {
+        turnOff();
+    }
+    else
+    {
+        turnOn();
+    }
+}
