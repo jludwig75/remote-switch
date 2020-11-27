@@ -8,6 +8,7 @@
 
 void wifi_setup(const char* hostName, const char* ssid, const char* password)
 {
+    WiFi.hostname(hostName);
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, password);
     Serial.println("");
@@ -24,7 +25,7 @@ void wifi_setup(const char* hostName, const char* ssid, const char* password)
     Serial.print("IP address: ");
     Serial.println(WiFi.localIP());
 
-    if (MDNS.begin("esp8266")) 
+    if (MDNS.begin(hostName)) 
     {
         Serial.println("MDNS responder started");
     }

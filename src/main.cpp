@@ -1,5 +1,4 @@
 #include <Arduino.h>
-
 #include <BasicOTA.h>
 #include <BasicWifi.h>
 #include <GpioSwitch.h>
