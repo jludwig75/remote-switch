@@ -15,7 +15,7 @@ class Root(object):
     def state(self, state=None):
         if cherrypy.request.method == 'POST':
             if state is None:
-                raise cherrypy.HTTPError(status=400, message='"state" parameter not specified')
+                raise cherrypy.HTTPError(status=400, message='"state" argument was not specified')
             if state.upper() == 'ON':
                 print('Turning switch on')
                 self._switchOn = True
@@ -23,7 +23,7 @@ class Root(object):
                 print('Turning switch off')
                 self._switchOn = False
             else:
-                raise cherrypy.HTTPError(status=400, message='Invalid value for "state" parameter. Must be either "ON" or "OFF')
+                raise cherrypy.HTTPError(status=400, message='Invalid value for argument "state": must be either "on" or "off".')
             time.sleep(0.25)
             return 'OK'
         elif cherrypy.request.method == 'GET':

@@ -99,7 +99,7 @@ void handleState()
     {
         if (!server.hasArg("state"))
         {
-            server.send(400, "txt/plain", "\"state\" argument was not specified\r\n");
+            server.send(400, "txt/plain", "\"state\" argument was not specified");
             return;
         }
 
@@ -114,7 +114,7 @@ void handleState()
         }
         else
         {
-            server.send(400, "txt/plain", "Invalid value for argument \"state\": must be either \"on\" or \"off\".\r\n");
+            server.send(400, "txt/plain", "Invalid value for argument \"state\": must be either \"on\" or \"off\".");
             return;
         }
         server.send(200, "text/plain", "OK");
