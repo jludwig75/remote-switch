@@ -1,3 +1,5 @@
+#include "BasicWifi.h"
+
 #include <Arduino.h>
 
 #include <ESP8266mDNS.h>

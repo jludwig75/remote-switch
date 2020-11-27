@@ -1,10 +1,10 @@
 #include <Arduino.h>
 
+#include <BasicOTA.h>
+#include <BasicWifi.h>
 #include <GpioSwitch.h>
-#include "ota.h"
-#include "webserver.h"
-#include "wifi.h"
 
+#include "webserver.h"
 #include "filesystem.h"
 
 
@@ -19,8 +19,8 @@ GpioSwitch powerSwitch(LED_BUILTIN, true);
 
 void setup()
 {
-    powerSwitch.begin();
     Serial.begin(115200);
+    powerSwitch.begin();
 
     fileSystem_setup();
     wifi_setup(hostName, ssid, password);
