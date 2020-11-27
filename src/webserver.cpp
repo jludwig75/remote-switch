@@ -187,8 +187,8 @@ void webServer_setup(GpioSwitch* powerSwitch)
 
     server.on("/", handleRoot);
     server.on("/state", handleState);
-    server.on("/upload",  HTTP_POST, replyOK, handleUpload);
-    server.on("/upload",  HTTP_GET, handleGetUpload);
+    server.on("/upload", HTTP_POST, replyOK, handleUpload);
+    server.on("/upload", HTTP_GET, handleGetUpload);
 
     server.begin();
     Serial.println("HTTP server started");
