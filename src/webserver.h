@@ -3,6 +3,6 @@
 
 class GpioSwitch;
 
-void webServerStart(GpioSwitch* powerSwitch);
+void webServer_setup(GpioSwitch* powerSwitch);
 
-void webServerUpdate();
+void webServer_onLoop();

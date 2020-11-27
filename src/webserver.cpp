@@ -181,7 +181,7 @@ void replyOK()
 }
 
 
-void webServerStart(GpioSwitch* powerSwitch)
+void webServer_setup(GpioSwitch* powerSwitch)
 {
     _powerSwitch = powerSwitch;
 
@@ -194,7 +194,7 @@ void webServerStart(GpioSwitch* powerSwitch)
     Serial.println("HTTP server started");
 }
 
-void webServerUpdate()
+void webServer_onLoop()
 {
     server.handleClient();
 }

@@ -4,7 +4,7 @@
 #include <FS.h>
 
 
-void fileSystemSetup()
+void fileSystem_setup()
 {
    Serial.println("Initializing SPIFFS");
 

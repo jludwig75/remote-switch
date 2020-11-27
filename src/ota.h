@@ -1,5 +1,5 @@
 #pragma once
 
 
-void ota_setup();
-void ota_on_loop();
+void ota_setup(const char* hostName, const char* password);
+void ota_onLoop();

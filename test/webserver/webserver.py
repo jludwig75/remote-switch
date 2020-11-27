@@ -9,7 +9,7 @@ class Root(object):
         self._switchOn = False
     @cherrypy.expose
     def index(self):
-        with open('index.html', 'rt') as webpage:
+        with open('../../html/index.html', 'rt') as webpage:
             return webpage.read()
     @cherrypy.expose
     def state(self, state=None):
@@ -24,7 +24,7 @@ class Root(object):
                 self._switchOn = False
             else:
                 raise cherrypy.HTTPError(status=400, message='Invalid value for "state" parameter. Must be either "ON" or "OFF')
-            time.sleep(0.75)
+            time.sleep(0.25)
             return 'OK'
         elif cherrypy.request.method == 'GET':
             print('Switch is %s' % ('ON' if self._switchOn else 'OFF'))

@@ -3,10 +3,10 @@
 #include <ArduinoOTA.h>
 
 
-void ota_setup()
+void ota_setup(const char* hostName, const char* password)
 {
-    ArduinoOTA.setHostname("ESP8266");
-    ArduinoOTA.setPassword("Redhorn!1");
+    ArduinoOTA.setHostname(hostName);
+    ArduinoOTA.setPassword(password);
 
     ArduinoOTA.onStart([]() {
         Serial.println("OTA Start");
@@ -29,7 +29,7 @@ void ota_setup()
     Serial.println("OTA ready");
 }
 
-void ota_on_loop()
+void ota_onLoop()
 {
     ArduinoOTA.handle();
 }
