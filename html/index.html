@@ -8,11 +8,11 @@
     </head>
     <body>
         <div id="app">
-            <div class="column_element top_column_element">
-                {{ buttonState }}
+            <div class="column_element top_column_element" id="button">
+                <button id="powerButton" :style="{ background: 'url(' + buttonImage + ')' }" @click="onButtonClick" :disabled="this.buttonAction == null"></button>
             </div>
-            <div class="column_element" id="button">
-                <button @click="onButtonClick" :disabled="this.buttonAction == null">{{ buttonText }}</button>
+            <div class="column_element">
+                {{ buttonStatusMessage }}
             </div>
         </div>
         <script src="/main.js"></script>
