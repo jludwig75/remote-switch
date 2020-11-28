@@ -10,3 +10,7 @@ html * {
 .top_column_element {
     padding-top: 2em;
 }
+
+button {
+    padding: 0.5em;
+}
