@@ -14,7 +14,9 @@ class Root(object):
     @cherrypy.expose
     def state(self, state=None):
         if cherrypy.request.method == 'POST':
+            print('state POST')
             if state is None:
+                print('state POST no "state" argument')
                 raise cherrypy.HTTPError(status=400, message='"state" argument was not specified')
             if state.upper() == 'ON':
                 print('Turning switch on')
@@ -23,6 +25,7 @@ class Root(object):
                 print('Turning switch off')
                 self._switchOn = False
             else:
+                print('state POST bad argument "%s"' % state)
                 raise cherrypy.HTTPError(status=400, message='Invalid value for argument "state": must be either "on" or "off".')
             time.sleep(0.25)
             return 'OK'
@@ -35,14 +38,24 @@ class Root(object):
 
 if __name__ == "__main__":
     conf = {
-        '/static': {
-            'tools.staticdir.on': True,
-            'tools.staticdir.dir': os.path.abspath('./public')
-        },
         '/': {
-            'tools.sessions.on': True
+            'tools.staticdir.on': True,
+            'tools.staticdir.dir': os.path.abspath('../../html/')
         }
     }
+
     cherrypy.config.update({'server.socket_port': 8081})
     cherrypy.server.socket_host = '0.0.0.0'
     cherrypy.quickstart(Root(), '/', conf)
+    # conf = {
+    #     '/': {
+    #         'tools.staticdir.on': True,
+    #         'tools.staticdir.dir': os.path.abspath('../../html/')
+    #     },
+    #     '/': {
+    #         'tools.sessions.on': True
+    #     }
+    # }
+    # cherrypy.config.update({'server.socket_port': 8081})
+    # cherrypy.server.socket_host = '0.0.0.0'
+    # cherrypy.quickstart(Root(), '/', conf)

@@ -1,57 +1,8 @@
 <html>
     <head>
         <title>Remote Switch</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script>
-            const MSECS_PRE_SEC = 1000;
-            function SECONDS(seconds) {
-                return seconds * MSECS_PRE_SEC;
-            }
-            var enableRefresh = true;
-            function refreshState() {
-                $.get("/state", function(state) {
-                    if (enableRefresh)
-                    {
-                        state = state.toUpperCase();
-                        if (state == 'OFF')
-                        {
-                            $('#state').text('Switch Off');
-                            $('#switch').text('On');
-                        }
-                        else
-                        {
-                            $('#state').text('Switch On');
-                            $('#switch').text('Off');
-                        }
-                    }
-                });
-            }
-            function handleButtonClick() {
-                $('#switch').prop('disabled', true);
-                enableRefresh = false
-                var newState = 'ON';
-                var message = 'Turning on..';
-                var buttonText = $('#switch').text().toUpperCase();
-                $('#switch').text('...');
-                if (buttonText == 'OFF')
-                {
-                    newState = 'OFF';
-                    message = 'Turning off..';
-                }
-                $('#state').text(message);
-                $.post('/state', { state: newState }, function(data) {
-                    $('#switch').prop('disabled', false);
-                    enableRefresh = true;
-                    refreshState();
-                });
-            }
-            $(document).ready(function(){
-                refreshState();
-                $('#switch').click(handleButtonClick);
-                setInterval(refreshState, SECONDS(1));
-            });
-        </script>
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <style>
             .column_element {
                 text-align: center;
@@ -61,12 +12,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <div id="main">
-            <div class="column_element" id="state">
+        <div id="app">
+            <div class="column_element">
+                {{ buttonState }}
             </div>
             <div class="column_element" id="button">
-                <button id="switch"></button>
+                <button @click="onButtonClick" :disabled="this.buttonAction == null">{{ buttonText }}</button>
             </div>
         </div>
+        <script src="/main.js"></script>
+        <script>
+            const mountedApp = app.mount('#app')
+        </script>
     </body>
 </html>

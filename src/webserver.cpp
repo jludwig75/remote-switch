@@ -33,7 +33,7 @@ const char* web_page = ""
 "      No web page found. Please upload a web page.</p>\n"
 "      <form action=\"/upload\" method=\"POST\" enctype=\"multipart/form-data\">\n"
 "          <input type=\"file\"  name=\"fileToUpload\" id=\"fileToUpload\"/><br/>\n"
-"          <input type=\"submit\" value=\"Upload Web Page\" name=\"submit\"/>\n"
+"          <input type=\"submit\" value=\"Upload File\" name=\"submit\"/>\n"
 "      </form>\n"
 "  </body>\n"
 "</html>\n";
@@ -140,7 +140,12 @@ void handleUpload()
     HTTPUpload& upload = server.upload();
     if (upload.status == UPLOAD_FILE_START)
     {
-        String filename = "/index.html";
+        //String filename = "/index.html";
+        String filename = upload.filename;
+        if (!filename.startsWith("/"))
+        {
+            filename = "/" + filename;
+        }
 
         Serial.println(String("handleFileUpload Name: ") + filename);
         uploadFile = SPIFFS.open(filename, "w");
@@ -189,7 +194,7 @@ void webServer_setup(GpioSwitch* powerSwitch)
     server.on("/state", handleState);
     server.on("/upload", HTTP_POST, replyOK, handleUpload);
     server.on("/upload", HTTP_GET, handleGetUpload);
-
+    server.serveStatic("/", SPIFFS, "/");
     server.begin();
     Serial.println("HTTP server started");
 }
