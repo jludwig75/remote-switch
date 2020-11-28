@@ -1,0 +1,12 @@
+html * {
+    font-size: 1.2em;
+}
+
+.column_element {
+    text-align: center;
+    padding: 1em;
+}
+
+.top_column_element {
+    padding-top: 2em;
+}

@@ -1,19 +1,14 @@
 <html>
     <head>
         <title>Remote Switch</title>
+        <link rel="stylesheet" href="/styles.css" />
         <script src="https://unpkg.com/vue@next"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <style>
-            .column_element {
-                text-align: center;
-                padding: 0.3em;
-            }
-        </style>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <div id="app">
-            <div class="column_element">
+            <div class="column_element top_column_element">
                 {{ buttonState }}
             </div>
             <div class="column_element" id="button">
